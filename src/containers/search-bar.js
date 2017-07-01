@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
 
       this.state = { term: '' }
 
-      // Binds "this" from the class "onInputChange" to the method called this.onInputChange 
+      // Binds "this" from the class "onInputChange" to the method called this.onInputChange
       this.onInputChange = this.onInputChange.bind(this);
   }
   onInputChange(event) {
@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
         <input
           value={this.state.term}
           onChange={this.onInputChange}
-          placeholder="Get a five-dat forecast in your favorite cities"
+          placeholder="Get a five-day forecast in your favorite cities"
           className="form-control"
           type="text"
         />
