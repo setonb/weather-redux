@@ -9,13 +9,21 @@ export default class SearchBar extends Component {
       // Binds "this" from the class "onInputChange" to the method called this.onInputChange
       this.onInputChange = this.onInputChange.bind(this);
   }
+
   onInputChange(event) {
     this.setState({term: event.target.value});
   }
 
+  onFormSubmit(event) {
+      event.preventDefault();
+
+      // We need to go and fetch the weather data
+      
+  }
+
   render() {
     return (
-      <form className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group">
         <input
           value={this.state.term}
           onChange={this.onInputChange}
