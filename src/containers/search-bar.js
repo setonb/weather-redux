@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
       super(props);
 
@@ -8,6 +11,7 @@ export default class SearchBar extends Component {
 
       // Binds "this" from the class "onInputChange" to the method called this.onInputChange
       this.onInputChange = this.onInputChange.bind(this);
+      this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(event) {
@@ -17,8 +21,10 @@ export default class SearchBar extends Component {
   onFormSubmit(event) {
       event.preventDefault();
 
-      // We need to go and fetch the weather data
-      
+      // We need to use the action to go and fetch the weather data
+      this.props.fetchWeather(this.state.term);
+      // This clears the search term after searching
+      this.setState({ term: '' });
   }
 
   render() {
@@ -35,6 +41,16 @@ export default class SearchBar extends Component {
           <button type="submit" className="btn btn-secondary">Search</button>
         </span>
       </form>
-    )
+    );
   }
 }
+
+// To intereact with actions you need to do three things:
+// 1) import the connect, bindaActionCreators, and actions
+// 2) mapDispatchToProps function to bind the action creator
+// 3) export connect with 2 arguments ( can be null )and the Container Component
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
