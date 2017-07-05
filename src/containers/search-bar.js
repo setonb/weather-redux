@@ -45,7 +45,7 @@ class SearchBar extends Component {
   }
 }
 
-// To intereact with actions you need to do three things:
+// To interact with actions you need to do three things:
 // 1) import the connect, bindaActionCreators, and actions
 // 2) mapDispatchToProps function to bind the action creator
 // 3) export connect with 2 arguments ( can be null )and the Container Component
